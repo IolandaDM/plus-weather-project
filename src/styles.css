@@ -3,11 +3,16 @@
 }
 .container .border {
 max-width: 600px;
+margin: 0 auto;
 }
 
 .current-temperature{
     font-size: 60px;
 display: inline;
+}
+.github{
+    max-width: 600px;
+margin: 0 auto;
 }
 .weather-symbol{
     width: 30px;

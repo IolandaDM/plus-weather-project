@@ -8,18 +8,20 @@
     <link rel="stylesheet" href="src/styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </head>
 
 <body>
     <div class="container">
         <div class="border">
-            <h1>
+            <h1 id="city">
                 Lisbon
             </h1>
             <h2>
                 Wednesday 08:19
             </h2>
-            <h2>
+            <h2 id=weatherDescription>
                 Clouds
             </h2>
             <div class="row">
@@ -32,15 +34,15 @@
                 </div>
                 <div class="col-6">
                     <p>
-                        Wind speed = 1 <km>
+                        Wind speed = <span id="windSpeed">1</span> km/h
                     </p>
                     <p>
-                        Humidity = 5%
+                        Humidity = <span id="humidity">5</span>%
                     </p>
                 </div>
             </div>
         </div>
-        <p>
+        <p class="github">
             <a href="https://github.com/IolandaDM/plus-weather-project" target="_blank">Open-source code</a>, by Iolanda
             Magalhães
         </p>
