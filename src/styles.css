@@ -1,3 +1,10 @@
+.border{
+    padding: 10px 20px;
+}
+.container .border {
+max-width: 600px;
+}
+
 .current-temperature{
     font-size: 60px;
 display: inline;
