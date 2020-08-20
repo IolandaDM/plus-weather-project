@@ -3,6 +3,7 @@
 }
 .container .border {
 max-width: 600px;
+min-width: 500px;
 margin: 0 auto;
 }
 
@@ -10,13 +11,17 @@ margin: 0 auto;
     font-size: 60px;
 display: inline;
 }
+.current-weather{
+    display: inline;
+}
 .github{
     max-width: 600px;
+    min-width: 500px;
 margin: 0 auto;
 }
-.weather-symbol{
-    width: 30px;
-    vertical-align: 30px
+.weather-icon{
+    width: 80px;
+    vertical-align: 5px
 }
 
 .units{

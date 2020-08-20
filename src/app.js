@@ -14,19 +14,21 @@ function formatDate(timestamp) {
 }
 
 function displayTemperature(response) {
+    console.log(response.data)
     let temperatureElement = document.querySelector("#current-temperature")
     temperatureElement.innerHTML = Math.round(response.data.main.temp)
     let windSpeedElement = document.querySelector("#windSpeed")
     windSpeedElement.innerHTML = Math.round(response.data.wind.speed)
     let humidityElement = document.querySelector("#humidity")
     humidityElement.innerHTML = Math.round(response.data.main.humidity)
-    console.log(response.data)
     let cityElement = document.querySelector("#city")
     cityElement.innerHTML = response.data.name
     let weatherDescriptionElement = document.querySelector("#weatherDescription")
     weatherDescriptionElement.innerHTML = response.data.weather[0].main
     let currentDayTimeElement = document.querySelector("#current-day-time")
     currentDayTimeElement.innerHTML = formatDate(response.data.dt * 1000)
+    let weatherIconElement = document.querySelector("#weather-icon")
+    weatherIconElement.setAttribute("src", `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
 }
 
 
