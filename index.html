@@ -9,20 +9,42 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
 </head>
 
 <body>
     <div class="container">
         <div class="border">
-            <h1 id="city">
+            <div class=row>
+                <div class=col-7>
+                    <form id="search-form" class="mb-2">
+                        <div class=row>
+                            <div class=col-7>
+                                <input type="search" placeholder="Type a city" class="form-control" id="input-city"
+                                    autocomplete="off">
 
+                            </div>
+                            <div class="col-2">
+                                <input type="submit" value="Search city" class="btn btn-secondary">
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class=col-3>
+                    <button type="button" class="btn btn-info">
+                        Current city
+                    </button>
+                </div>
+            </div>
+
+
+
+            <h1 id="city">
             </h1>
             <h2>
                 <span id="current-day-time"></span>
             </h2>
             <h2 id=weatherDescription>
-
             </h2>
             <div class="row">
                 <div class="col-7">

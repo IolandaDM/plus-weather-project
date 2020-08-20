@@ -7,6 +7,9 @@ min-width: 500px;
 margin: 0 auto;
 }
 
+.current-city{
+    margin-right: 30px;
+}
 .current-temperature{
     font-size: 60px;
 display: inline;
