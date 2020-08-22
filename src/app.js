@@ -16,18 +16,19 @@ function formatDate(timestamp) {
 function displayTemperature(response) {
     console.log(response.data)
     let temperatureElement = document.querySelector("#current-temperature")
-    temperatureElement.innerHTML = Math.round(response.data.main.temp)
     let windSpeedElement = document.querySelector("#windSpeed")
-    windSpeedElement.innerHTML = Math.round(response.data.wind.speed)
     let humidityElement = document.querySelector("#humidity")
-    humidityElement.innerHTML = Math.round(response.data.main.humidity)
     let cityElement = document.querySelector("#city")
-    cityElement.innerHTML = response.data.name
     let weatherDescriptionElement = document.querySelector("#weatherDescription")
-    weatherDescriptionElement.innerHTML = response.data.weather[0].main
     let currentDayTimeElement = document.querySelector("#current-day-time")
-    currentDayTimeElement.innerHTML = formatDate(response.data.dt * 1000)
     let weatherIconElement = document.querySelector("#weather-icon")
+    celciusTemperature = response.data.main.temp
+    temperatureElement.innerHTML = Math.round(response.data.main.temp)
+    windSpeedElement.innerHTML = Math.round(response.data.wind.speed)
+    humidityElement.innerHTML = Math.round(response.data.main.humidity)
+    cityElement.innerHTML = response.data.name
+    weatherDescriptionElement.innerHTML = response.data.weather[0].main
+    currentDayTimeElement.innerHTML = formatDate(response.data.dt * 1000)
     weatherIconElement.setAttribute("src", `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
 }
 
@@ -56,10 +57,27 @@ function showCurrentCityTemp(event) {
     navigator.geolocation.getCurrentPosition(findCity);
 }
 
+function displayFahrenheitTemperature(event) {
+    event.preventDefault();
+    let fahrenheitTemperature = (celciusTemperature * 1.8) + 32;
+    let temperatureElement = document.querySelector("#current-temperature")
+    temperatureElement.innerHTML = fahrenheitTemperature
+
+}
+
 let form = document.querySelector("#search-form")
 form.addEventListener("submit", handleSubmit)
 
 let cityButtonElement = document.querySelector("#current-city-button")
 cityButtonElement.addEventListener("click", showCurrentCityTemp)
+
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link")
+
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature)
+
+
+
+let celciusTemperature = null;
 
 window.onload = showCurrentCityTemp
