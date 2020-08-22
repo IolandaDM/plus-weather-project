@@ -14,7 +14,7 @@ function formatDate(timestamp) {
 }
 
 function displayTemperature(response) {
-    console.log(response.data)
+
     let temperatureElement = document.querySelector("#current-temperature")
     let windSpeedElement = document.querySelector("#windSpeed")
     let humidityElement = document.querySelector("#humidity")
@@ -32,17 +32,55 @@ function displayTemperature(response) {
     weatherIconElement.setAttribute("src", `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
 }
 
+function formatTime(timestamp) {
+    let date = new Date(timestamp);
+    let hours = date.getHours();
+    if (hours < 10) {
+        hours = `0${hours}`;
+    }
+    let minutes = date.getMinutes();
+    if (minutes < 10) {
+        minutes = `0${minutes}`;
+    }
+    return `${hours}:${minutes}`
+}
+
+function displayForecast(response) {
+    let forecastElement = document.querySelector("#forecast")
+    let forecast = null;
+
+    for (let index = 0; index < 6; index++) {
+        forecast = response.data.list[index]
+        forecastElement.innerHTML += `<div class=col-2>
+        <p class="forecast-hour">${formatTime(forecast.dt * 1000)}</p>
+        <img src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="Forecast Icon">
+            <div class="forecast-temperature">${forecast.main.temp}</div>
+                </div>
+                `
+    }
+}
+
 function search(city) {
     let apiKey = "667b3c2d5276fd8b0274db2abae287d7";
     let urlDomain = "https://api.openweathermap.org/data/2.5/"
     let apiUrl = `${urlDomain}weather?q=${city}&appid=${apiKey}&units=metric`
     axios.get(apiUrl).then(displayTemperature)
+    apiUrl = `${urlDomain}forecast?q=${city}&appid=${apiKey}&units=metric`
+    axios.get(apiUrl).then(displayForecast)
 }
 
 function handleSubmit(event) {
     event.preventDefault();
     let cityInputElement = document.querySelector("#input-city")
     search(cityInputElement.value)
+}
+
+function getForecast(latitude, longitude) {
+    let apiKey = "667b3c2d5276fd8b0274db2abae287d7";
+    let urlDomain = "https://api.openweathermap.org/data/2.5/"
+    let apiUrl = `${urlDomain}forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`
+
+    axios.get(apiUrl).then(displayForecast)
 }
 
 function findCity(position) {
@@ -52,7 +90,9 @@ function findCity(position) {
     let urlDomain = "https://api.openweathermap.org/data/2.5/";
     let apiUrl = `${urlDomain}weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayTemperature);
+    getForecast(lat, lon)
 }
+
 function showCurrentCityTemp(event) {
     navigator.geolocation.getCurrentPosition(findCity);
 }
