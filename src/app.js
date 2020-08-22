@@ -61,7 +61,17 @@ function displayFahrenheitTemperature(event) {
     event.preventDefault();
     let fahrenheitTemperature = (celciusTemperature * 1.8) + 32;
     let temperatureElement = document.querySelector("#current-temperature")
-    temperatureElement.innerHTML = fahrenheitTemperature
+    temperatureElement.innerHTML = Math.round(fahrenheitTemperature)
+    celciusLink.classList.remove("active");
+    fahrenheitLink.classList.add("active")
+}
+
+function displayCelciusTemperature(event) {
+    event.preventDefault();
+    let temperatureElement = document.querySelector("#current-temperature")
+    temperatureElement.innerHTML = Math.round(celciusTemperature)
+    fahrenheitLink.classList.remove("active");
+    celciusLink.classList.add("active");
 
 }
 
@@ -73,11 +83,13 @@ cityButtonElement.addEventListener("click", showCurrentCityTemp)
 
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link")
-
 fahrenheitLink.addEventListener("click", displayFahrenheitTemperature)
-
+let celciusLink = document.querySelector("#celcius-link")
+celciusLink.addEventListener("click", displayCelciusTemperature)
 
 
 let celciusTemperature = null;
 
 window.onload = showCurrentCityTemp
+fahrenheitLink.classList.remove("active");
+celciusLink.classList.add("active");
