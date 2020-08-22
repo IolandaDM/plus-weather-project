@@ -61,3 +61,5 @@ form.addEventListener("submit", handleSubmit)
 
 let cityButtonElement = document.querySelector("#current-city-button")
 cityButtonElement.addEventListener("click", showCurrentCityTemp)
+
+window.onload = showCurrentCityTemp
