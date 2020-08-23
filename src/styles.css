@@ -1,4 +1,6 @@
-    
+ .hide-page{
+     visibility: hidden;
+ }
   .units .active{
 color: #000000;
 cursor: default;
