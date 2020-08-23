@@ -46,8 +46,6 @@ function displayTemperature(response) {
     weatherDescriptionElement.innerHTML = response.data.weather[0].main
     currentDayTimeElement.innerHTML = formatDate(response.data.dt * 1000)
     weatherIconElement.setAttribute("src", `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
-    let body = document.querySelector("body")
-    body.classList.remove("hide-page")
 
 }
 
